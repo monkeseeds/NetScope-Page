@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NetScope | Roblox Networking IDE</title>
+    <meta
+      name="description"
+      content="NetScope is a Roblox Studio networking IDE for graphing remotes, tracing call flow, reviewing security warnings, and monitoring live network behavior."
+    />
+    <meta property="og:title" content="NetScope | Roblox Networking IDE" />
+    <meta property="og:description" content="Visualize, debug, secure, and optimize Roblox multiplayer networking." />
+    <meta property="og:image" content="assets/graph.jpg" />
+    <link rel="icon" type="image/png" href="assets/netscope-logo.png" />
+    <link rel="stylesheet" href="styles.css?v=1.3.0" />
+  </head>
+  <body>
+    <canvas class="network-field" data-network-field aria-hidden="true"></canvas>
+
+    <header class="site-header" id="top">
+      <a class="brand" href="#top" aria-label="NetScope home">
+        <img class="brand-logo" src="assets/netscope-logo.png" alt="" />
+        <span>NetScope</span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#features">Features</a>
+        <a href="#demo">Demo</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#deploy">Documentation</a>
+      </nav>
+      <a class="nav-cta" href="#pricing">Get NetScope</a>
+    </header>
+
+    <main>
+      <section class="hero section-shell" id="demo">
+        <div class="hero-copy">
+          <p class="eyebrow">Roblox Studio remote command center</p>
+          <h1>Cut Networking Debugging from Hours to Minutes.</h1>
+          <p class="hero-text">
+            Visualize every RemoteEvent, trace every network call, and uncover multiplayer issues before they reach
+            production.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary magnetic" href="#pricing">Get NetScope</a>
+            <a class="button secondary magnetic" href="#features">Learn More</a>
+          </div>
+        </div>
+
+        <div class="command-deck" id="interactive-demo" aria-label="Interactive NetScope product demo">
+          <div class="deck-top">
+            <div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+            <strong>NetScope Live System</strong>
+            <span class="rec-light">REC</span>
+          </div>
+
+          <div class="demo-layout">
+            <aside class="activity-feed">
+              <span>Remote activity</span>
+              <p data-feed-line>PlayerInput fired EquipWeapon</p>
+              <p>InventoryService accepted payload</p>
+              <p class="warning-line">Validation warning queued</p>
+            </aside>
+
+            <div class="demo-graph" data-demo-graph>
+              <svg class="demo-lines" viewBox="0 0 640 420" preserveAspectRatio="none" aria-hidden="true">
+                <path class="line line-blue" data-line="input" d="M110 205 C190 130 260 120 325 170" />
+                <path class="line line-cyan" data-line="service" d="M325 170 C390 220 440 240 520 210" />
+                <path class="line line-red" data-line="security" d="M325 170 C360 300 455 345 545 325" />
+                <path class="line line-green" data-line="database" d="M110 205 C190 300 340 320 545 325" />
+              </svg>
+
+              <button class="graph-node node-player active" type="button" data-node="Player Input">
+                Player Input
+                <small>LocalScript</small>
+              </button>
+              <button class="graph-node node-remote" type="button" data-node="EquipWeapon Remote">
+                EquipWeapon
+                <small>RemoteEvent</small>
+              </button>
+              <button class="graph-node node-service" type="button" data-node="Inventory Service">
+                Inventory Service
+                <small>ServerScript</small>
+              </button>
+              <button class="graph-node node-security" type="button" data-node="Validation Alert">
+                Validation Alert
+                <small>Medium risk</small>
+              </button>
+              <button class="graph-node node-data" type="button" data-node="DataStore">
+                Store
+                <small>DataStore</small>
+              </button>
+
+              <div class="node-tooltip" data-node-tooltip>
+                <span>Selected remote</span>
+                <strong>EquipWeapon Remote</strong>
+                <p>Payload: weaponId, slot, timestamp</p>
+                <p>Latency: 42ms</p>
+              </div>
+            </div>
+
+            <aside class="inspect-panel">
+              <span>Inspector</span>
+              <h2 data-inspect-title>EquipWeapon Remote</h2>
+              <dl>
+                <div>
+                  <dt>Source</dt>
+                  <dd data-inspect-source>StarterPlayer.InputCtrl</dd>
+                </div>
+                <div>
+                  <dt>Destination</dt>
+                  <dd data-inspect-destination>Server.InventoryService</dd>
+                </div>
+                <div>
+                  <dt>Latency</dt>
+                  <dd data-inspect-latency>42ms</dd>
+                </div>
+              </dl>
+              <button class="mini-button" type="button" data-replay>Trigger replay</button>
+              <button class="mini-button ghost" type="button" data-assistant>Ask Assistant</button>
+            </aside>
+          </div>
+
+          <div class="replay-strip">
+            <span>Replay timeline</span>
+            <div class="timeline-track"><i data-replay-head></i></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="story section-shell" id="features">
+        <article class="story-card problem">
+          <div class="story-copy">
+            <p class="eyebrow">The problem</p>
+            <h2>Multiplayer bugs aren't the problem. Finding them is.</h2>
+            <p>
+              One report becomes five script searches, three unchecked remotes, and a long night in Output. NetScope
+              pulls the network path into view before the trail goes cold.
+            </p>
+          </div>
+          <div class="code-stack" aria-hidden="true">
+            <span>RewardController.lua</span>
+            <span>InventoryManager.lua</span>
+            <span>EquipWeapon.server.lua</span>
+            <span>CurrencyService.lua</span>
+          </div>
+        </article>
+
+        <article class="story-card map">
+          <div class="story-copy">
+            <p class="eyebrow">The network map</p>
+            <h2>See your entire networking architecture instantly.</h2>
+            <p>Remotes, scripts, services, listeners, and warnings become a living graph your team can inspect.</p>
+          </div>
+          <div class="mini-map" aria-hidden="true">
+            <svg class="map-links" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <path d="M20 28 L50 42 L76 22" />
+              <path d="M50 42 L75 56 L32 70 Z" />
+              <path d="M20 28 L32 70" />
+            </svg>
+            <span class="map-node a"></span>
+            <span class="map-node b"></span>
+            <span class="map-node c"></span>
+            <span class="map-node d"></span>
+            <span class="map-node e"></span>
+          </div>
+        </article>
+
+        <article class="story-card trace">
+          <div class="story-copy">
+            <p class="eyebrow">Remote tracing</p>
+            <h2>Follow every request from source to destination.</h2>
+            <p>Watch a packet travel from UI button, to RemoteEvent, to server service, to persisted state.</p>
+          </div>
+          <div class="packet-route" aria-hidden="true">
+            <span>UI Button</span>
+            <span>RemoteEvent</span>
+            <span>Inventory Service</span>
+            <span>Database</span>
+          </div>
+        </article>
+
+        <article class="story-card replay">
+          <div class="story-copy">
+            <p class="eyebrow">Replay system</p>
+            <h2>A time machine for multiplayer bugs.</h2>
+            <p>Scrub through a simulated request history and see exactly when a risky payload appeared.</p>
+          </div>
+          <div class="cinematic-timeline" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+        </article>
+
+        <article class="story-card security">
+          <div class="story-copy">
+            <p class="eyebrow">Security scanner</p>
+            <h2>Catch networking vulnerabilities before exploiters do.</h2>
+            <p>Surface missing validation, remote spam, and client-authoritative changes while the code is still fresh.</p>
+          </div>
+          <div class="threat-list">
+            <span>Missing validation</span>
+            <span>Remote spam</span>
+            <span>Client-authoritative change</span>
+          </div>
+        </article>
+
+        <article class="story-card assistant">
+          <div class="story-copy">
+            <p class="eyebrow">Insight assistant</p>
+            <h2>Ask questions. Get answers instantly.</h2>
+            <p>Query the graph for ownership, risk, and currency paths without manually opening every script.</p>
+          </div>
+          <div class="assistant-panel">
+            <span>Where is player currency modified?</span>
+            <p>EconomyService and AwardDailyBonus are the primary mutation paths.</p>
+          </div>
+        </article>
+
+        <article class="story-card team">
+          <div class="story-copy">
+            <p class="eyebrow">Built for Roblox teams</p>
+            <h2>A shared source of truth for your networking architecture.</h2>
+            <p>Use the same graph for architecture reviews, security findings, and team handoffs.</p>
+          </div>
+          <div class="cursor-board" aria-hidden="true">
+            <svg class="team-links" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <defs>
+                <marker id="team-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                  <path d="M0 0 L8 4 L0 8 Z"></path>
+                </marker>
+              </defs>
+              <path d="M35 35 C46 38 53 44 59 50" />
+              <path d="M61 59 C55 67 50 70 47 72" />
+              <path d="M37 72 C33 61 30 48 29 39" />
+            </svg>
+            <span class="cursor one">Core</span>
+            <span class="cursor two">QA</span>
+            <span class="cursor three">Security</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="section-shell pricing-section" id="pricing">
+        <div class="section-heading pricing-heading">
+          <div>
+            <p class="eyebrow">Pricing</p>
+            <h2>One subscription. Full plugin access.</h2>
+            <p>
+              Phase 1 keeps pricing simple while NetScope grows: activate one license key and unlock every current
+              plugin workflow for your Roblox Studio account.
+            </p>
+          </div>
+        </div>
+
+        <div class="pricing-grid phase-one-pricing">
+          <article class="price-card highlighted">
+            <span class="popular-badge">Phase 1 launch</span>
+            <div class="price-top">
+              <span class="plan-label">NetScope</span>
+              <p>For Roblox developers and teams that want the full networking toolkit now.</p>
+            </div>
+            <div class="price">
+              <strong>$9.99</strong>
+              <span class="price-period">/ month</span>
+            </div>
+            <p class="savings">License-gated access to every Phase 1 feature.</p>
+            <ul>
+              <li>Unlimited projects</li>
+              <li>Full network graph</li>
+              <li>Remote discovery</li>
+              <li>Remote tracing</li>
+              <li>Live network monitor</li>
+              <li>Local session replay</li>
+              <li>Performance analysis</li>
+              <li>Security scanner</li>
+              <li>Insight assistant</li>
+              <li>Advanced analytics</li>
+              <li>License key activation</li>
+              <li>Documentation and community support</li>
+              <li>Future Phase 1 updates</li>
+            </ul>
+            <a class="button primary price-cta" href="https://netscopedashboard.online/?plan=pro">Get NetScope</a>
+          </article>
+        </div>
+
+      </section>
+
+      <section class="section-shell deploy" id="deploy">
+        <div>
+          <p class="eyebrow">Documentation</p>
+          <h2>Setup Instructions.</h2>
+          <a class="button primary deploy-cta" href="https://create.roblox.com/store/asset/134158903845202/NetScope-RemoteEvent-Visualizer-Debugging-Tool">Install from Creator Store</a>
+        </div>
+        <div class="deploy-steps">
+          <article>
+            <span>1</span>
+            <h3>Install</h3>
+            <p>Get NetScope from the Roblox Creator Store and add it to your Studio account.</p>
+          </article>
+          <article>
+            <span>2</span>
+            <h3>Open</h3>
+            <p>Launch Roblox Studio, open the Plugins tab, and start NetScope from the toolbar.</p>
+          </article>
+          <article>
+            <span>3</span>
+            <h3>Activate</h3>
+            <p>Use your dashboard license key to unlock the workflows included with your plan.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>NetScope</span>
+      <nav class="footer-links" aria-label="Legal links">
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="refund.html">Refunds</a>
+      </nav>
+      <span>@ 2026 PlugStack. All Rights Reserved.</span>
+    </footer>
+
+    <script src="script.js?v=1.3.0"></script>
+  </body>
+</html>
