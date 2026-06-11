@@ -975,20 +975,6 @@ main,
   color: var(--text);
 }
 
-.popular-badge {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  min-height: 28px;
-  padding: 6px 10px;
-  border: 1px solid rgba(56, 223, 255, 0.38);
-  border-radius: 999px;
-  background: rgba(44, 169, 255, 0.14);
-  color: #d9f7ff;
-  font-size: 0.74rem;
-  font-weight: 900;
-}
-
 .plan-label {
   display: inline-flex;
   align-items: center;
