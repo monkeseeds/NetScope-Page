@@ -17,7 +17,7 @@ function initNetworkField() {
   let visible = !document.hidden;
 
   function resize() {
-    const ratio = Math.min(window.devicePixelRatio || 1, 1.25);
+    const ratio = Math.min(window.devicePixelRatio || 1, 1.1);
     width = window.innerWidth;
     height = window.innerHeight;
     canvas.width = Math.floor(width * ratio);
@@ -28,7 +28,7 @@ function initNetworkField() {
 
     nodes.length = 0;
     sparks.length = 0;
-    const count = Math.min(72, Math.max(34, Math.floor((width * height) / 26000)));
+    const count = Math.min(52, Math.max(24, Math.floor((width * height) / 38000)));
     for (let index = 0; index < count; index += 1) {
       const cluster = index % 4;
       const anchorX = [0.16, 0.38, 0.64, 0.84][cluster] * width;
@@ -36,19 +36,19 @@ function initNetworkField() {
       nodes.push({
         x: anchorX + (Math.random() - 0.5) * width * 0.34,
         y: anchorY + (Math.random() - 0.5) * height * 0.30,
-        vx: (Math.random() - 0.5) * 0.12,
-        vy: (Math.random() - 0.5) * 0.12,
-        size: Math.random() * 2.1 + 1.5,
+        vx: (Math.random() - 0.5) * 0.08,
+        vy: (Math.random() - 0.5) * 0.08,
+        size: Math.random() * 1.4 + 1.2,
         phase: Math.random() * Math.PI * 2,
       });
     }
 
-    for (let index = 0; index < 8; index += 1) {
+    for (let index = 0; index < 5; index += 1) {
       sparks.push({
         from: Math.floor(Math.random() * nodes.length),
         to: Math.floor(Math.random() * nodes.length),
         progress: Math.random(),
-        speed: Math.random() * 0.0025 + 0.0015,
+        speed: Math.random() * 0.0018 + 0.001,
       });
     }
   }
@@ -73,8 +73,8 @@ function initNetworkField() {
     const pointerPullY = (pointer.y - height / 2) * 0.000018;
 
     nodes.forEach((node, index) => {
-      node.x += node.vx + Math.sin(frame * 0.006 + node.phase) * 0.045 + pointerPullX;
-      node.y += node.vy + Math.cos(frame * 0.007 + node.phase) * 0.045 + pointerPullY;
+      node.x += node.vx + Math.sin(frame * 0.005 + node.phase) * 0.025 + pointerPullX;
+      node.y += node.vy + Math.cos(frame * 0.006 + node.phase) * 0.025 + pointerPullY;
 
       if (node.x < -20) node.x = width + 20;
       if (node.x > width + 20) node.x = -20;
@@ -97,9 +97,9 @@ function initNetworkField() {
         if (distance > 145) continue;
 
         const alpha = (1 - distance / 145) * 0.26;
-        ctx.shadowColor = "rgba(56, 223, 255, 0.20)";
-        ctx.shadowBlur = 6;
-        ctx.strokeStyle = `rgba(56, 223, 255, ${alpha})`;
+        ctx.shadowColor = "rgba(244, 241, 232, 0.08)";
+        ctx.shadowBlur = 3;
+        ctx.strokeStyle = `rgba(244, 241, 232, ${alpha})`;
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(a.x, a.y);
@@ -123,24 +123,24 @@ function initNetworkField() {
 
       const x = from.x + (to.x - from.x) * spark.progress;
       const y = from.y + (to.y - from.y) * spark.progress;
-      ctx.shadowColor = "rgba(44, 169, 255, 0.82)";
-      ctx.shadowBlur = 10;
-      ctx.fillStyle = "rgba(193, 244, 255, 0.72)";
+      ctx.shadowColor = "rgba(102, 227, 255, 0.42)";
+      ctx.shadowBlur = 6;
+      ctx.fillStyle = "rgba(102, 227, 255, 0.58)";
       ctx.beginPath();
-      ctx.arc(x, y, 1.8, 0, Math.PI * 2);
+      ctx.arc(x, y, 1.35, 0, Math.PI * 2);
       ctx.fill();
       ctx.shadowBlur = 0;
     });
 
     nodes.forEach((node, index) => {
       const pulse = (Math.sin(frame * 0.026 + node.phase + index) + 1) / 2;
-      ctx.shadowColor = "rgba(44, 169, 255, 0.78)";
-      ctx.shadowBlur = 10;
-      ctx.fillStyle = `rgba(44, 169, 255, ${0.46 + pulse * 0.22})`;
+      ctx.shadowColor = "rgba(244, 241, 232, 0.28)";
+      ctx.shadowBlur = 4;
+      ctx.fillStyle = `rgba(244, 241, 232, ${0.34 + pulse * 0.16})`;
       ctx.beginPath();
       ctx.arc(node.x, node.y, node.size, 0, Math.PI * 2);
       ctx.fill();
-      ctx.strokeStyle = `rgba(206, 247, 255, ${0.20 + pulse * 0.18})`;
+      ctx.strokeStyle = `rgba(102, 227, 255, ${0.16 + pulse * 0.12})`;
       ctx.lineWidth = 1;
       ctx.stroke();
       ctx.shadowBlur = 0;

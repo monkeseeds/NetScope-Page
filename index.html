@@ -6,13 +6,13 @@
     <title>NetScope | Roblox Networking IDE</title>
     <meta
       name="description"
-      content="NetScope is a Roblox Studio networking IDE for graphing remotes, tracing call flow, reviewing security warnings, and monitoring live network behavior."
+      content="NetScope is a Roblox Studio networking inspection surface for graphing remotes, tracing call flow, reviewing security warnings, and monitoring live network behavior."
     />
     <meta property="og:title" content="NetScope | Roblox Networking IDE" />
-    <meta property="og:description" content="Visualize, debug, secure, and optimize Roblox multiplayer networking." />
+    <meta property="og:description" content="Chrome DevTools-style network inspection for Roblox developers." />
     <meta property="og:image" content="assets/graph.jpg" />
     <link rel="icon" type="image/png" href="assets/netscope-logo.png" />
-    <link rel="stylesheet" href="styles.css?v=1.3.0" />
+    <link rel="stylesheet" href="styles.css?v=1.4.0" />
   </head>
   <body>
     <canvas class="network-field" data-network-field aria-hidden="true"></canvas>
@@ -23,10 +23,10 @@
         <span>NetScope</span>
       </a>
       <nav class="nav" aria-label="Primary navigation">
-        <a href="#features">Features</a>
-        <a href="#demo">Demo</a>
+        <a href="#features">Product</a>
+        <a href="#demo">Workflow</a>
         <a href="#pricing">Pricing</a>
-        <a href="#deploy">Documentation</a>
+        <a href="#deploy">Setup</a>
       </nav>
       <a class="nav-cta" href="#pricing">Get NetScope</a>
     </header>
@@ -34,23 +34,23 @@
     <main>
       <section class="hero section-shell" id="demo">
         <div class="hero-copy">
-          <p class="eyebrow">Roblox Studio remote command center</p>
+          <p class="eyebrow">Chrome DevTools for Roblox networking</p>
           <h1>Cut Networking Debugging from Hours to Minutes.</h1>
           <p class="hero-text">
-            Visualize every RemoteEvent, trace every network call, and uncover multiplayer issues before they reach
-            production.
+            Inspect RemoteEvents, trace call flow, and review risky multiplayer behavior from a single Studio-native
+            surface built for production Roblox teams.
           </p>
           <div class="hero-actions">
             <a class="button primary magnetic" href="#pricing">Get NetScope</a>
-            <a class="button secondary magnetic" href="#features">Learn More</a>
+            <a class="button secondary magnetic" href="#features">View Workflow</a>
           </div>
         </div>
 
         <div class="command-deck" id="interactive-demo" aria-label="Interactive NetScope product demo">
           <div class="deck-top">
             <div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
-            <strong>NetScope Live System</strong>
-            <span class="rec-light">REC</span>
+            <strong>NetScope inspection surface</strong>
+            <span class="rec-light">LIVE</span>
           </div>
 
           <div class="demo-layout">
@@ -130,7 +130,7 @@
       <section class="story section-shell" id="features">
         <article class="story-card problem">
           <div class="story-copy">
-            <p class="eyebrow">The problem</p>
+            <p class="eyebrow">Signal</p>
             <h2>Multiplayer bugs aren't the problem. Finding them is.</h2>
             <p>
               One report becomes five script searches, three unchecked remotes, and a long night in Output. NetScope
@@ -147,7 +147,7 @@
 
         <article class="story-card map">
           <div class="story-copy">
-            <p class="eyebrow">The network map</p>
+            <p class="eyebrow">Network map</p>
             <h2>See your entire networking architecture instantly.</h2>
             <p>Remotes, scripts, services, listeners, and warnings become a living graph your team can inspect.</p>
           </div>
@@ -181,7 +181,7 @@
 
         <article class="story-card replay">
           <div class="story-copy">
-            <p class="eyebrow">Replay system</p>
+            <p class="eyebrow">Replay</p>
             <h2>A time machine for multiplayer bugs.</h2>
             <p>Scrub through a simulated request history and see exactly when a risky payload appeared.</p>
           </div>
@@ -192,7 +192,7 @@
 
         <article class="story-card security">
           <div class="story-copy">
-            <p class="eyebrow">Security scanner</p>
+            <p class="eyebrow">Security</p>
             <h2>Catch networking vulnerabilities before exploiters do.</h2>
             <p>Surface missing validation, remote spam, and client-authoritative changes while the code is still fresh.</p>
           </div>
@@ -205,7 +205,7 @@
 
         <article class="story-card assistant">
           <div class="story-copy">
-            <p class="eyebrow">Insight assistant</p>
+            <p class="eyebrow">Answers</p>
             <h2>Ask questions. Get answers instantly.</h2>
             <p>Query the graph for ownership, risk, and currency paths without manually opening every script.</p>
           </div>
@@ -217,7 +217,7 @@
 
         <article class="story-card team">
           <div class="story-copy">
-            <p class="eyebrow">Built for Roblox teams</p>
+            <p class="eyebrow">Team reviews</p>
             <h2>A shared source of truth for your networking architecture.</h2>
             <p>Use the same graph for architecture reviews, security findings, and team handoffs.</p>
           </div>
@@ -244,7 +244,7 @@
           <div>
             <p class="eyebrow">Pricing</p>
             <h2>One subscription. Full plugin access.</h2>
-            <p>Save hours of debugging, with one simple tool.</p>
+            <p>Save hours of debugging with one simple tool.</p>
           </div>
         </div>
 
@@ -314,6 +314,6 @@
       <span>@ 2026 PlugStack. All Rights Reserved.</span>
     </footer>
 
-    <script src="script.js?v=1.3.0"></script>
+    <script src="script.js?v=1.4.0"></script>
   </body>
 </html>
