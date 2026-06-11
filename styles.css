@@ -293,7 +293,7 @@ main,
   position: relative;
   justify-self: end;
   width: 100%;
-  max-width: 720px;
+  max-width: 760px;
   min-width: 0;
   overflow: hidden;
   border: 1px solid var(--rule-strong);
@@ -360,7 +360,7 @@ main,
 
 .demo-layout {
   display: grid;
-  grid-template-columns: minmax(166px, 0.28fr) minmax(330px, 1fr) minmax(202px, 0.34fr);
+  grid-template-columns: minmax(156px, 0.26fr) minmax(350px, 1fr) minmax(218px, 0.36fr);
   min-height: 520px;
 }
 
@@ -377,6 +377,8 @@ main,
 .inspect-panel {
   min-width: 0;
   overflow: hidden;
+  padding-right: 22px;
+  padding-left: 22px;
   border-left: 1px solid var(--rule);
 }
 
@@ -447,17 +449,17 @@ main,
   display: grid;
   gap: 5px;
   width: max-content;
-  min-width: 144px;
-  max-width: min(230px, calc(100% - 24px));
-  min-height: 60px;
-  padding: 11px 13px;
+  min-width: 124px;
+  max-width: min(180px, calc(100% - 24px));
+  min-height: 58px;
+  padding: 10px 12px;
   border: 1px solid var(--rule-strong);
   border-radius: 8px;
   background: rgba(14, 15, 14, 0.94);
   box-shadow: 0 18px 46px rgba(0, 0, 0, 0.34);
   color: var(--paper);
   cursor: grab;
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   font-weight: 850;
   text-align: left;
   white-space: nowrap;
@@ -466,7 +468,7 @@ main,
 .graph-node small {
   color: var(--muted);
   font-family: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   font-weight: 700;
 }
 
@@ -478,27 +480,28 @@ main,
 
 .node-player {
   top: 42%;
-  left: 8%;
+  left: 6%;
 }
 
 .node-remote {
   top: 18%;
-  left: 44%;
+  right: 6%;
 }
 
 .node-service {
   top: 44%;
-  right: 5%;
+  right: 6%;
+  min-width: 148px;
 }
 
 .node-security {
-  right: 4%;
+  right: 6%;
   bottom: 20%;
   border-color: rgba(255, 103, 95, 0.58);
 }
 
 .node-data {
-  left: 32%;
+  left: 30%;
   bottom: 8%;
 }
 
@@ -506,7 +509,7 @@ main,
   position: absolute;
   top: 22px;
   left: 22px;
-  width: min(255px, calc(100% - 44px));
+  width: min(238px, calc(100% - 44px));
   padding: 16px;
   border: 1px solid var(--rule-strong);
   border-radius: 8px;
@@ -560,10 +563,12 @@ main,
 }
 
 .mini-button {
-  width: 100%;
+  width: calc(100% - 2px);
   max-width: 100%;
   min-height: 44px;
   margin-top: 10px;
+  margin-right: 1px;
+  margin-left: 1px;
   padding: 0 10px;
   cursor: pointer;
   font-size: 0.84rem;
