@@ -176,11 +176,11 @@ main,
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(360px, 0.78fr) minmax(600px, 1.22fr);
-  gap: clamp(36px, 5vw, 86px);
+  grid-template-columns: minmax(520px, 0.86fr) minmax(560px, 1fr);
+  gap: clamp(34px, 4vw, 56px);
   align-items: center;
   min-height: calc(100vh - 90px);
-  padding: clamp(74px, 9vw, 130px) 0 clamp(80px, 8vw, 120px);
+  padding: clamp(58px, 7vw, 104px) 0 clamp(68px, 7vw, 104px);
 }
 
 .hero-copy {
@@ -216,14 +216,14 @@ main,
 .deploy h2 {
   margin: 0;
   color: var(--paper);
-  font-size: clamp(3.4rem, 7vw, 7.8rem);
+  font-size: clamp(3.15rem, 5.6vw, 6.4rem);
   font-weight: 520;
   line-height: 0.92;
   letter-spacing: -0.045em;
 }
 
 .hero-copy h1 {
-  max-width: 760px;
+  max-width: 100%;
   padding-bottom: 0.08em;
 }
 
@@ -244,8 +244,8 @@ main,
 }
 
 .hero-text {
-  max-width: 540px;
-  margin: 28px 0 0;
+  max-width: 520px;
+  margin: 24px 0 0;
   font-size: clamp(1.02rem, 1.35vw, 1.22rem);
 }
 
@@ -253,7 +253,7 @@ main,
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 36px;
+  margin-top: 30px;
 }
 
 .button {
@@ -291,6 +291,9 @@ main,
 
 .command-deck {
   position: relative;
+  justify-self: end;
+  width: 100%;
+  max-width: 720px;
   min-width: 0;
   overflow: hidden;
   border: 1px solid var(--rule-strong);
@@ -357,13 +360,13 @@ main,
 
 .demo-layout {
   display: grid;
-  grid-template-columns: minmax(188px, 0.3fr) minmax(360px, 1fr) minmax(230px, 0.36fr);
+  grid-template-columns: minmax(166px, 0.28fr) minmax(330px, 1fr) minmax(202px, 0.34fr);
   min-height: 520px;
 }
 
 .activity-feed,
 .inspect-panel {
-  padding: 22px 20px;
+  padding: 22px 18px;
   background: rgba(0, 0, 0, 0.34);
 }
 
@@ -561,7 +564,7 @@ main,
   max-width: 100%;
   min-height: 44px;
   margin-top: 10px;
-  padding: 0 12px;
+  padding: 0 10px;
   cursor: pointer;
   font-size: 0.84rem;
   font-weight: 850;
@@ -1117,6 +1120,11 @@ main,
 
   .hero {
     min-height: auto;
+  }
+
+  .command-deck {
+    justify-self: stretch;
+    max-width: none;
   }
 
   .demo-layout {
