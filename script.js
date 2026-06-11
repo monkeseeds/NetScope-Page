@@ -13,9 +13,11 @@ function initNetworkField() {
   let width = 0;
   let height = 0;
   let frame = 0;
+  let lastDraw = 0;
+  let visible = !document.hidden;
 
   function resize() {
-    const ratio = window.devicePixelRatio || 1;
+    const ratio = Math.min(window.devicePixelRatio || 1, 1.25);
     width = window.innerWidth;
     height = window.innerHeight;
     canvas.width = Math.floor(width * ratio);
@@ -26,7 +28,7 @@ function initNetworkField() {
 
     nodes.length = 0;
     sparks.length = 0;
-    const count = Math.min(130, Math.max(72, Math.floor((width * height) / 14500)));
+    const count = Math.min(72, Math.max(34, Math.floor((width * height) / 26000)));
     for (let index = 0; index < count; index += 1) {
       const cluster = index % 4;
       const anchorX = [0.16, 0.38, 0.64, 0.84][cluster] * width;
@@ -34,24 +36,35 @@ function initNetworkField() {
       nodes.push({
         x: anchorX + (Math.random() - 0.5) * width * 0.34,
         y: anchorY + (Math.random() - 0.5) * height * 0.30,
-        vx: (Math.random() - 0.5) * 0.18,
-        vy: (Math.random() - 0.5) * 0.18,
-        size: Math.random() * 2.8 + 1.9,
+        vx: (Math.random() - 0.5) * 0.12,
+        vy: (Math.random() - 0.5) * 0.12,
+        size: Math.random() * 2.1 + 1.5,
         phase: Math.random() * Math.PI * 2,
       });
     }
 
-    for (let index = 0; index < 18; index += 1) {
+    for (let index = 0; index < 8; index += 1) {
       sparks.push({
         from: Math.floor(Math.random() * nodes.length),
         to: Math.floor(Math.random() * nodes.length),
         progress: Math.random(),
-        speed: Math.random() * 0.004 + 0.002,
+        speed: Math.random() * 0.0025 + 0.0015,
       });
     }
   }
 
-  function draw() {
+  function draw(time = 0) {
+    if (!visible) {
+      requestAnimationFrame(draw);
+      return;
+    }
+
+    if (time - lastDraw < 33) {
+      requestAnimationFrame(draw);
+      return;
+    }
+
+    lastDraw = time;
     frame += 1;
     ctx.clearRect(0, 0, width, height);
     ctx.globalCompositeOperation = "source-over";
@@ -68,11 +81,11 @@ function initNetworkField() {
       if (node.y < -20) node.y = height + 20;
       if (node.y > height + 20) node.y = -20;
 
-      if (index % 17 === 0) {
-        node.vx += (Math.random() - 0.5) * 0.01;
-        node.vy += (Math.random() - 0.5) * 0.01;
-        node.vx = Math.max(-0.28, Math.min(0.28, node.vx));
-        node.vy = Math.max(-0.28, Math.min(0.28, node.vy));
+      if (index % 23 === 0) {
+        node.vx += (Math.random() - 0.5) * 0.006;
+        node.vy += (Math.random() - 0.5) * 0.006;
+        node.vx = Math.max(-0.18, Math.min(0.18, node.vx));
+        node.vy = Math.max(-0.18, Math.min(0.18, node.vy));
       }
     });
 
@@ -81,13 +94,13 @@ function initNetworkField() {
         const a = nodes[i];
         const b = nodes[j];
         const distance = Math.hypot(a.x - b.x, a.y - b.y);
-        if (distance > 190) continue;
+        if (distance > 145) continue;
 
-        const alpha = (1 - distance / 190) * 0.42;
-        ctx.shadowColor = "rgba(56, 223, 255, 0.34)";
-        ctx.shadowBlur = 12;
+        const alpha = (1 - distance / 145) * 0.26;
+        ctx.shadowColor = "rgba(56, 223, 255, 0.20)";
+        ctx.shadowBlur = 6;
         ctx.strokeStyle = `rgba(56, 223, 255, ${alpha})`;
-        ctx.lineWidth = 1.35;
+        ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(a.x, a.y);
         ctx.lineTo(b.x, b.y);
@@ -111,10 +124,10 @@ function initNetworkField() {
       const x = from.x + (to.x - from.x) * spark.progress;
       const y = from.y + (to.y - from.y) * spark.progress;
       ctx.shadowColor = "rgba(44, 169, 255, 0.82)";
-      ctx.shadowBlur = 18;
-      ctx.fillStyle = "rgba(193, 244, 255, 0.84)";
+      ctx.shadowBlur = 10;
+      ctx.fillStyle = "rgba(193, 244, 255, 0.72)";
       ctx.beginPath();
-      ctx.arc(x, y, 2.4, 0, Math.PI * 2);
+      ctx.arc(x, y, 1.8, 0, Math.PI * 2);
       ctx.fill();
       ctx.shadowBlur = 0;
     });
@@ -122,13 +135,13 @@ function initNetworkField() {
     nodes.forEach((node, index) => {
       const pulse = (Math.sin(frame * 0.026 + node.phase + index) + 1) / 2;
       ctx.shadowColor = "rgba(44, 169, 255, 0.78)";
-      ctx.shadowBlur = 20;
-      ctx.fillStyle = `rgba(44, 169, 255, ${0.62 + pulse * 0.28})`;
+      ctx.shadowBlur = 10;
+      ctx.fillStyle = `rgba(44, 169, 255, ${0.46 + pulse * 0.22})`;
       ctx.beginPath();
       ctx.arc(node.x, node.y, node.size, 0, Math.PI * 2);
       ctx.fill();
-      ctx.strokeStyle = `rgba(206, 247, 255, ${0.26 + pulse * 0.24})`;
-      ctx.lineWidth = 1.2;
+      ctx.strokeStyle = `rgba(206, 247, 255, ${0.20 + pulse * 0.18})`;
+      ctx.lineWidth = 1;
       ctx.stroke();
       ctx.shadowBlur = 0;
     });
@@ -137,6 +150,9 @@ function initNetworkField() {
   }
 
   window.addEventListener("resize", resize);
+  document.addEventListener("visibilitychange", () => {
+    visible = !document.hidden;
+  });
   window.addEventListener("mousemove", (event) => {
     pointer.x = event.clientX;
     pointer.y = event.clientY;
